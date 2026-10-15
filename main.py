@@ -18,8 +18,11 @@ def main():
         scelta = menu()
 
         if scelta == "1":
+            print (f" Nome attuale: {lingotto.nome}")
             nuovo_nome = input("Inserisci il nuovo nome del centro fieristico: ")
-            # TODO: Aggiorna il nome del centro fieristico
+            lingotto.nome = nuovo_nome
+            print (f" Nome aggiornato con successo a {lingotto.nome}")
+
 
         elif scelta == "2":
             file_path = "dati_lingotto.csv"

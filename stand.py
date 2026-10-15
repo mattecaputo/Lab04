@@ -19,7 +19,7 @@ class Stand:
         else:
             stato = " Occupato "
 
-        return f"{self:id_stand}: Standard | { self.superficie} mq - Padiglione {self.padiglione} - Prezzo base {self.calcola_prezzo():.2f}€ - {stato}"
+        return f"{self.id_stand}: Standard | { self.superficie} mq - Padiglione {self.padiglione} - Prezzo base {self.calcola_prezzo():.2f}€ - {stato}"
 
 
     def __repr__(self):
