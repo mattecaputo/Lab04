@@ -11,11 +11,12 @@ class LingottoFiere:
 
     @property
     def nome(self):
-        #...
+        #Getter per il nome del nuovo centro fieristico
         return self._nome
 
     @nome.setter
     def nome(self, nuovo_nome):
+        #Setter per aggiornare il nome del centro fieristico
         self._nome = nuovo_nome
 
 
@@ -26,15 +27,18 @@ class LingottoFiere:
             with open(file_path, "r", encoding="utf-8") as file:
                 reader = csv.reader(file)
                 for riga in reader:
+                    if not riga:
+                        continue
                     campi = [campo.strip() for campo in riga]
                     codice = campi[0]
-
+                    #Riconoscimento delle righe degli stand tramite il prefisso 'ST'
                     if codice.startswith("ST"):
                         id_stand = campi[0]
                         superficie = campi[1]
                         padiglione = campi[2]
                         prezzo_base = campi[3]
 
+                        #Riconoscimento della tipologia dello stand sulla base del numero di campi e sul tipo di dato aggiuntivo
                         if len(campi) == 4:
                             self.stand[id_stand] = Stand(id_stand,superficie,padiglione, prezzo_base)
 
@@ -67,15 +71,15 @@ class LingottoFiere:
         stand_selezionato = self.stand[codice_stand]
         espositore_selezionato = self.espositori[codice_espositore]
 
+        #Controlli di integrità
 
         if not stand_selezionato.disponibile:
             raise Exception (f"Lo stand {stand_selezionato} è già stato assegnato" )
 
-
         if espositore_selezionato.stand_assegnato is not None:
             raise Exception ( f" Errore: All'espositore {espositore_selezionato} è già stato assegnato uno stand" )
 
-
+        #Esecuzione dell'associazione
         stand_selezionato.disponibile = False
         stand_selezionato.espositore = espositore_selezionato
         espositore_selezionato.stand_assegnato = stand_selezionato
