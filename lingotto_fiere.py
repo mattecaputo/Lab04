@@ -1,7 +1,9 @@
 import csv
 from operator import attrgetter
 from espositore import Espositore
-from stand import Stand, StandPreseExtra, StandPremium
+from stand import Stand
+from standpremium import StandPremium
+from standpreseextra import StandPreseExtra
 class LingottoFiere:
     def __init__(self, nome):
         """Inizializza gli attributi e le strutture dati"""
